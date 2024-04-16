@@ -1,3 +1,14 @@
+# Custom added Readme content
+
+- Created to brush up on React skills
+- Followed tutorial found at https://www.youtube.com/watch?v=LoYbN6qoQHA 
+
+
+
+
+# CREATE-REACT-APP default section below here
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
