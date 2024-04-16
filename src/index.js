@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './styles/index.css';
 import App from './App';
+import MitchPage from './mitchPage';
 import reportWebVitals from './reportWebVitals';
+import NavPage from './navPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>
+  <MitchPage/>
+  
+  
+
 );
 
 // If you want to start measuring performance in your app, pass a function
