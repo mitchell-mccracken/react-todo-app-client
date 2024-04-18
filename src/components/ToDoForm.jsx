@@ -19,7 +19,6 @@ export const ToDoForm = ( { addTodo } ) => {
         onChange={changeFunc}
         value={value}
       />
-      <input type="text" placeholder='this is fake' />
       <button type='submit' className='todo-btn'>
         add task
       </button>

@@ -2,19 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 import App from './App';
-import MitchPage from './mitchPage';
 import reportWebVitals from './reportWebVitals';
-import NavPage from './navPage';
+import NavBar from './navBar';
+import TodoPage from './todoPage';
+import LoginPage from './loginPage';
+import HomePage from './homePage';
+import ErrorPage from './errorPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/todo',
+    element: <TodoPage />
+  },
+  {
+    path: '/login',
+    element: <LoginPage />
+  }
+]);
+
+const logURL = () => {
+  console.log(window.location.pathname)
+}
+logURL();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>
-  <MitchPage/>
-  
-  
-
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
