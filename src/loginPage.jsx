@@ -4,22 +4,19 @@ import NavBar from "./navBar";
 import './styles/loginPage.css';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
-const BASE_URL = 'http://localhost:3300';
+import{ setURL, APP_TOKEN_KEY } from './utils';
 
 function LoginPage() {
-
-  const setURL = ( additionalText ) => { return `${BASE_URL}${additionalText}`};
-  // let count = 0;
-  const [ count, setCount ] = useState(0);
 
   // keep track of form data
   const [ userValues, setUserValues ] = useState({
     userName: '',
     password: '',
     rePassword: '',
+    email: '',
   });
   
+  // function for input change event
   const handleInputChange = ( e ) => {
     const { name, value } = e.target;
     setUserValues( prevState => ({
@@ -28,35 +25,25 @@ function LoginPage() {
     }) );
   };
 
+  // flag used to disable submit button
   const canSubmit = !!userValues?.password;
 
+
+  // function to create a user
   const createUser = () => {
-
-    console.log( userValues );
     
-    axios.post( setURL('/createUser'), userValues )
+    axios.post( setURL('/api/user/create'), userValues )
     .then( res => {
-      console.log( res.data );
-      const { token } = res.data.data;
-      console.log( token );
+      const { token } = res.data;
 
-      Cookies.set('mitch_test_app', token.toString(), { expires: 1/3600 });
-
-
+      // set cookie to expire in 5 minutes
+      // Cookies.set('mitch_test_app_token', token.toString(), { expires: 5/24/60 });   // OLD CODE
+      Cookies.set(APP_TOKEN_KEY, token.toString(), { expires: 5/24/60 });
     } )
     .catch( e => console.error( e ) )
   };
 
-  const func = () => { setCount(count + 1) };
 
-  const hitRoute = () => {
-    console.log('----- hit route ------');
-    axios.get( setURL('/') )
-    .then( res => {
-      console.log( res.data );
-    } )
-    .catch( e => console.error( e ) )
-  }
 
   return (
     <div id='login-page'>
@@ -92,6 +79,16 @@ function LoginPage() {
             type="text"
             name="rePassword"
             value={userValues.rePassword}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="input-wrapper">
+          <label htmlFor="">email</label>
+          <input 
+            type="text"
+            name="email"
+            value={userValues.email}
             onChange={handleInputChange}
           />
         </div>
