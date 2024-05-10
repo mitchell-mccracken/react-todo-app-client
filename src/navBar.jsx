@@ -23,6 +23,9 @@ function NavBar() {
           <div>
             <Link to="/login">Login</Link>
           </div>
+          <div>
+            <Link to="/createUser">Create User</Link>
+          </div>
         </div>
       </div>
     </div>
