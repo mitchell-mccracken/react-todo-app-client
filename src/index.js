@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import NavBar from './navBar';
 import TodoPage from './todoPage';
+import CreateUserPage from './createUserPage';
 import LoginPage from './loginPage';
 import HomePage from './homePage';
 import ErrorPage from './errorPage';
@@ -21,8 +22,12 @@ const router = createBrowserRouter([
     element: <TodoPage />
   },
   {
+    path: '/createUser',
+    element: <CreateUserPage />
+  },
+  {
     path: '/login',
-    element: <LoginPage />
+    element: <LoginPage/>
   }
 ]);
 
