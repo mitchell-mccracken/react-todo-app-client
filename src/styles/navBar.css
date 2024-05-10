@@ -7,7 +7,7 @@
   justify-content: space-between;
 }
 
-#links-wrapper {
+#links-wrapper, #user-info-wrapper {
   display: flex;
 
 }
