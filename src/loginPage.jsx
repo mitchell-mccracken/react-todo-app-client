@@ -3,7 +3,7 @@ import { useState } from 'react';
 import NavBar from './navBar';
 import './styles/createUserPage.css';
 import Cookies from 'js-cookie';
-import{ setURL, APP_TOKEN_KEY } from './utils';
+import{ setURL, APP_TOKEN_KEY, APP_UID_KEY } from './utils';
 import bcrypt from 'bcryptjs';
 
 
@@ -31,13 +31,17 @@ function LoginPage() {
 
   const loginUser = () => {
 
-    // userValues.password = bcrypt.hash( userValues.password, 10 );
-    axios.post( setURL('/api/user/login'), userValues)
+    axios.post( setURL('/api/user/login'), userValues, { withCredentials: true } )
     .then( res => {
-      console.log(res.data);
 
-      const { token } = res.data;
-      Cookies.set(APP_TOKEN_KEY, token.toString(), { expires: 5/24/60 });
+      // check to make sure the UID cookie is set, if so then we are logged in
+      const userId = Cookies.get(APP_UID_KEY)
+      
+      // if we have a userId then redirect to user home page
+      // TODO: check if there is a better way to do this
+      if ( userId ) {
+        window.location.replace('http://localhost:3000/userHome')
+      }
 
     })
     .catch( e => console.error(e) )
