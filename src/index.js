@@ -10,7 +10,10 @@ import LoginPage from './loginPage';
 import HomePage from './homePage';
 import ErrorPage from './errorPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import UserHomePage from './userHomePage';
+import Routes from './router';
 
+// mm 051324: as of now, no longer used
 const router = createBrowserRouter([
   {
     path: '/',
@@ -28,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage/>
+  },
+  {
+    path: '/userHome',
+    element: <UserHomePage/>
   }
 ]);
 
@@ -39,7 +46,8 @@ logURL();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* <RouterProvider router={router} /> */}
+    <App />
   </React.StrictMode>
 );
 
