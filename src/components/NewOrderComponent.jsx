@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { HandleInputChange } from '../utils';
-
+import { CreditCard, PaymentForm } from "react-square-web-payments-sdk";
 
 const NewOrderComponent = ( { show } ) => {
 
@@ -48,6 +48,24 @@ const NewOrderComponent = ( { show } ) => {
       </div>
       <div>
         <button onClick={logValues}>Show values</button>
+      </div>
+      <div>
+        <div>
+          <input 
+            type="text" 
+            placeholder='card number'
+          />
+        </div>
+        <PaymentForm
+          applicationId="sandbox-sq0idb-BO9q6ECgkcitNE4rJpOQiw"
+          cardTokenizeResponseReceived={async (token, verifiedBuyer) => {
+            console.log('token:', token);
+            console.log('verifiedBuyer:', verifiedBuyer);
+          }}
+          locationId='XXXXXXXXXX'
+        >
+          < CreditCard />
+        </PaymentForm>
       </div>
     </div>
   )
